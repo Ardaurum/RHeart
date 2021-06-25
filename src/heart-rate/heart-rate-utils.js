@@ -11,14 +11,12 @@ const heartRateUtils = {
     result.heartRate = is16Bits ? value.getUint16(1, false) : value.getUint8(1);
 
     offset = is16Bits ? 3 : 2;
-    if (result.enegryExpendedPresent)
-    {
-      result.enegryExpended = value.getUint16(offset, false);
+    if (result.energyExpendedPresent) {
+      result.energyExpended = value.getUint16(offset, false);
       offset += 2;
     }
-    
-    if (result.rrIntervalsPresent)
-    {
+
+    if (result.rrIntervalsPresent) {
       let rrIntervals = [];
       for (; offset + 1 < value.byteLength; offset += 2) {
         rrIntervals.push(value.getUint16(offset, false));
