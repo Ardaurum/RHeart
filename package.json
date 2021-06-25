@@ -1,0 +1,45 @@
+{
+  "name": "rheart",
+  "version": "0.1.0",
+  "description": "Heart rate monitor for streaming using BLE",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ardaurum/RHeart.git"
+  },
+  "build": {
+    "appId": "ard.rheart",
+    "mac": {
+      "category": "medical"
+    },
+	"extraResources": [
+		{
+			"from": "./src/monitors",
+			"to": "src/monitors",
+			"filter": [
+				"**/*"
+			]
+		}
+	]
+  },
+  "author": "Radosław Paszkowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ardaurum/RHeart/issues"
+  },
+  "homepage": "https://github.com/Ardaurum/RHeart#readme",
+  "devDependencies": {
+    "electron-builder": "^22.11.7",
+    "electron-nightly": "^15.0.0-nightly.20210611"
+  },
+  "dependencies": {
+    "@forevolve/bootstrap-dark": "^1.2.0-g6c89781692",
+    "bootstrap": "^5.0.1",
+    "jquery": "^3.6.0"
+  }
+}

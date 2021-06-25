@@ -1,0 +1,62 @@
+body {
+  margin: 10px;
+}
+
+#devices {
+  width: 100%
+}
+
+.fake {
+  outline: 0;
+  width: 0;
+  height: 0;
+  display: none;
+  border: none;
+  background: transparent;
+  color: transparent;
+}
+
+#monitor-selection {
+  margin: 3px;
+}
+
+.monitor-item {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin-right: 6px;
+}
+
+.monitor-item:hover {
+  outline: 3px solid #F1F1F1;
+}
+
+.monitor-item.selected {
+  outline: 3px solid #FF4500;
+}
+
+#loading {
+  display:none;
+}
+
+#loading #dot {
+  height: 10px;
+  width: 10px;
+  left: 20px;
+  top: -53px;
+  background: #fff;
+  position: relative;
+  z-index: 999;
+  border-radius: 100%;
+  animation: heartbeat 2s linear 0s infinite;
+}
+
+@keyframes heartbeat {
+  0%   {background:rgba(255,255,255,0); left:20px; top:-53px;}
+  15%  {background:rgba(255,255,255,.5); left:63px; top:-53px;}
+  25%  {background:rgba(255,255,255,1); left:77px; top:-115px;}
+  45%  {background:rgba(255,255,255,.5); left:95px; top:-25px;}
+  60%  {background:rgba(255,255,255,1); left:119px; top:-75px;}
+  80%  {background:rgba(255,255,255,.5); left:135px; top:-53px;}
+  100%  {background:rgba(255,255,255,0); left:170px; top:-53px;}
+}

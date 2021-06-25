@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>RHeart</title>
+  <link rel="stylesheet" type="text/css"
+    href="../node_modules/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="config-panel">
+    <button id="gesture-workaround" class="fake"></button>
+    <select class="form-select" name="devices" id="devices" multiple disabled>
+      <option selected>Looking for devices...</option>
+    </select>
+	<div id="monitor-selection">
+		<!-- here all thumbnails will be loaded -->
+	</div>
+    <button disabled id="confirm">Confirm</button>
+  </div>
+  <div id="loading">
+	  <!-- loading animation -->
+	  <svg width=200px height=128px viewBox="0 0 110 80"><polyline fill="none" stroke="red" stroke-width="4" stroke-miterlimit="16" stroke-linecap="round" points="10,50 35,50 45,10 55,70 70,35 80,50 100,50"></polyline></svg>
+	  <div id="dot"></div>
+  </div>
+  <div id="monitor">
+    <!-- your monitor will be loaded here -->
+  </div>
+</body>
+
+<script src="index.js"></script>
+</html>
