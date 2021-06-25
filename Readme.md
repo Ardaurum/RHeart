@@ -1,6 +1,6 @@
 # RHeart
 
-RHeart is an Electron app for displaying heart rate from a connected BLE device.
+RHeart is an Electron app for displaying heart rate from a connected BLE device. Created mainly for streaming purposes.
 
 ## Installing and building
 
