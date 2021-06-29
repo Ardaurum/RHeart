@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder -mwl"
+    "dist": "electron-builder -w"
   },
   "repository": {
     "type": "git",
@@ -15,10 +15,6 @@
   "build": {
     "appId": "com.ard.rheart",
     "productName": "RHeart",
-    "mac": {
-      "icon": "./src/resources/rheart_icon.png",
-      "category": "public.app-category.social-networking"
-    },
     "win": {
       "icon": "./src/resources/icon.ico"
     },
