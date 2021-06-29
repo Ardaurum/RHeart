@@ -1,31 +1,36 @@
 {
   "name": "rheart",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Heart rate monitor for streaming using BLE",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder -mwl"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ardaurum/RHeart.git"
   },
   "build": {
-    "appId": "ard.rheart",
+    "appId": "com.ard.rheart",
+    "productName": "RHeart",
     "mac": {
-      "category": "medical"
+      "icon": "./src/resources/rheart_icon.png",
+      "category": "public.app-category.social-networking"
     },
-	"extraResources": [
-		{
-			"from": "./src/monitors",
-			"to": "src/monitors",
-			"filter": [
-				"**/*"
-			]
-		}
-	]
+    "win": {
+      "icon": "./src/resources/icon.ico"
+    },
+    "extraResources": [
+      {
+        "from": "./src/monitors",
+        "to": "src/monitors",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   },
   "author": "Radosław Paszkowski",
   "license": "MIT",

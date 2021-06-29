@@ -12,6 +12,7 @@ function createWindow() {
     width: 800,
     height: 600,
     show: false,
+	icon: path.join(__dirname, "resources/icon.ico"),
     webPreferences: {
       preload: path.join(__dirname, 'main-preload.js')
     }

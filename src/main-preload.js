@@ -5,20 +5,38 @@ const heartRateAPI = require('./heart-rate/heart-rate-ble');
 const heartRateUtils = require('./heart-rate/heart-rate-utils');
 
 let heartRateService = {};
+let testEnvironment = true;
 
 contextBridge.exposeInMainWorld(
   'api', {
+  initBLESearch: async () => heartRateService = await heartRateAPI.initService(),
   devicesFound: (callback) => {
     ipcRenderer.on('devices-found', (_, devices) => {
       callback(devices);
     })
   },
-  selectDevice: (deviceId) => ipcRenderer.send('select-device', deviceId),
-  initBLESearch: async () => heartRateService = await heartRateAPI.initService(),
+  selectDevice: (deviceId) => { 
+    testEnvironment = false;
+    ipcRenderer.send('select-device', deviceId)
+  },
   subscribeToHeartRateMeasurement: (callback) => {
-    heartRateService.subscribeToHeartRateMeasurement(
-      (ev) => callback(heartRateUtils.parseHeartRateData(ev.currentTarget.value))
-    )
+	  if (testEnvironment)
+    {
+      setInterval(function() { 
+        callback({
+          contactDetected: false,
+          energyExpendedPresent: false,
+          rrIntervalsPresent: false,
+          heartRate: Math.random() * 20 + 80
+        })
+      }, 600)
+    }
+    else
+    {
+      heartRateService.subscribeToHeartRateMeasurement(
+        (ev) => callback(heartRateUtils.parseHeartRateData(ev.currentTarget.value))
+      )
+    }
   },
   subscribeToCharacteristic: (characteristic, callback) => heartRateService.subscribeToCharacteristic(characteristic, callback),
   readCharacteristic: async (characteristic) => await heartRateService.readCharacteristic(characteristic),

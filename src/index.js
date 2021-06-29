@@ -1,6 +1,7 @@
 $(() => {
   const deviceSelect = $('#devices');
   const confirmButton = $('#confirm');
+  const testVisualsButton = $('#test-visuals');
 
   window.api.devicesFound(onDevicesFound);
   let lastDevices = [];
@@ -48,8 +49,7 @@ $(() => {
     deviceSelected = false;
     confirmButton.prop('disabled', true);
     if (deviceSelect.index() >= 0 && deviceSelect.val() != null) {
-      if (selectedView != null)
-      {
+      if (selectedView != null) {
         confirmButton.prop('disabled', false);
       }
       deviceSelected = true;
@@ -59,21 +59,26 @@ $(() => {
   confirmButton.on('click', () => {
     let deviceId = deviceSelect.val()[0];
     window.api.selectDevice(deviceId);
-	$('#config-panel').hide();
-	$("#loading").show();
+    $('#config-panel').hide();
+    $('#loading').show();
+  })
+
+  testVisualsButton.on('click', () => {
+    $('#config-panel').hide();
+    $('#monitor').load(`${selectedView}/monitor.html`);
+    $.getScript(`${selectedView}/monitor.js`);
   })
 
   //Workaround to start search for devices without a gesture
   $('#gesture-workaround').on('click', async () => {
     await window.api.initBLESearch();
-	$("#loading").hide();
+    $("#loading").hide();
     $('#monitor').load(`${selectedView}/monitor.html`);
     $.getScript(`${selectedView}/monitor.js`);
   })
 
   //Loading all thumbnails
-  function loadThumbnails()
-  {
+  function loadThumbnails() {
     let views = window.api.getAllViews();
     let monitorSelection = $("#monitor-selection");
     let items = [];
@@ -87,10 +92,10 @@ $(() => {
 
         selectedView = views[i];
         item.addClass("selected");
-        if (deviceSelected)
-        {
+        if (deviceSelected) {
           confirmButton.prop('disabled', false);
         }
+        testVisualsButton.prop('disabled', false);
       });
       items.push(item);
     }
